@@ -15,5 +15,5 @@ ELEVENTH_QUERY = 'db.movies.updateMany({"imdb.rating":{$lt:5}},{$inc:{"imdb.rati
 TWELVETH_QUERY = 'db.comments.deleteOne({_id : {$exists:true}})'
 THIRTEENTH_QUERY = 'db.comments.deleteMany({author: "The Matrix"})'
 FOURTEENTH_QUERY = 'db.movies.deleteMany({genres: {$exists:false}})'
-FIVETEENTH_QUERY = 'INSERT YOUR QUERY'
-SIXTEENTH_QUERY = 'INSERT YOUR QUERY'
+FIVETEENTH_QUERY = 'db.movies.aggregate([{$group: { _id: "$year", count: { $sum: 1 }}},{$sort: {_id:1}}])'
+SIXTEENTH_QUERY = 'db.movies.aggregate([{$group: { _id: "$directors", averageRating: { $avg: "$imdb.rating" }}},{$sort: {averageRating:-1}}])'
